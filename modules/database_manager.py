@@ -5,12 +5,13 @@ import os
 DB_PATH = 'data/watchlist.db'
 
 def get_connection():
+    # Ensure the 'data' directory exists and the database is initialized
+    if not os.path.exists('data'):
+        os.makedirs('data')
     conn = sqlite3.connect(DB_PATH)
     return conn
 
 def create_tables():
-    if not os.path.exists('data'):
-        os.makedirs('data')
     conn = get_connection()
     cursor = conn.cursor()
     cursor.execute('''
@@ -52,6 +53,7 @@ def create_tables():
     ''')
     conn.commit()
     conn.close()
+
 
 def add_stock(stock_data):
     conn = get_connection()
