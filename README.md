@@ -22,8 +22,23 @@ The goal is to learn and have fun while building something useful! While the cod
 - **Edit Themes:** Customize the 'theme' column to group stocks
 - **Group Stocks:** Group stocks by any column, including numerical columns divided into quintiles
 - **Automatic Data Refresh:** Data is refreshed every 24 hours to ensure up-to-date information
-- **Bulk Import:** Add multiple stocks via CSV upload
+- **Bulk Import:** Add multiple stocks via CSV upload (CSV must contain a column named 'ticker_symbol')
 - **Persistent Storage:** All your watchlist data is stored locally
+- **CSV Import Format:** When using the bulk import feature, your CSV file must meet the following requirements:
+
+  - Must contain a column named exactly 'ticker_symbol'
+  - The ticker_symbol column should contain valid stock ticker symbols (e.g., AAPL, GOOGL, MSFT)
+  - Additional columns will be ignored
+  - Each ticker symbol should be on a new row
+
+    Example CSV format:
+
+    ```csv
+    ticker_symbol
+    AAPL
+    GOOGL
+    MSFT
+    ```
 
 ## 🚀 Quick Install (Recommended)
 
@@ -62,6 +77,7 @@ The goal is to learn and have fun while building something useful! While the cod
    ```
 
 The script will perform the following actions:
+
 - Check for Docker Installation: Ensures Docker is installed. If not, it prompts you to install Docker and exits.
 - Clone the Repository: Clones the streamlit-stockwatchlist repository into a directory named streamlit-stockwatchlist.
 - Build the Docker Image: Builds a Docker image named streamlit-stockwatchlist using the optimized Dockerfile.
@@ -71,6 +87,7 @@ The script will perform the following actions:
 4. **Access the Application**
 
    Once the script completes, open your web browser and navigate to:
+
    ```
    http://localhost:8501
    ```
@@ -190,6 +207,7 @@ pip install -r requirements.txt
 ## ⚠️ Disclaimer
 
 This is a hobby project created for learning and experimentation. The code and tools provided:
+
 - Are not production-ready
 - May contain bugs or security issues
 - Should be used at your own risk
