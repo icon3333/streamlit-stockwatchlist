@@ -1,6 +1,18 @@
 # Stock Watchlist Tool 📈
 
+> **Note**: This is a hobby project created with the assistance of LLMs (Large Language Models). All tools and code here are for experimental and learning purposes only, not intended for production use. Feel free to explore and play around!
+
 A Streamlit-based application to maintain and analyze your stock watchlist with real-time data from Yahoo Finance.
+
+## 👋 About This Project
+
+I'm a hobby programmer who enjoys experimenting with different tools and technologies. This project was created using:
+- LLMs (like ChatGPT/Claude) for code assistance
+- Streamlit for the web interface
+- Python for data processing
+- Docker for containerization
+
+The goal is to learn and have fun while building something useful! While the code works, it's meant for personal use and experimentation rather than production environments.
 
 ## Features
 
@@ -83,10 +95,21 @@ pip install -r requirements.txt
 - See `requirements.txt` for Python dependencies
 - Docker (optional, but recommended)
 
-## Security Note
+## ⚠️ Disclaimer
 
-This tool is designed for local use. If deploying on a server, please implement appropriate security measures.
+This is a hobby project created for learning and experimentation. The code and tools provided:
+- Are not production-ready
+- May contain bugs or security issues
+- Should be used at your own risk
+- Are meant for educational purposes
+- May need significant modifications for serious use
 
 ## License
 
 MIT License - See LICENSE file for details
+
+## 🙏 Acknowledgments
+
+- Thanks to the LLM communities for assistance and inspiration
+- Built with Streamlit and other open-source tools
+- Stock data provided by Yahoo Finance API
