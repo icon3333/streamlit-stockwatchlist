@@ -123,18 +123,6 @@ if not watchlist_df.empty:
     )
     watchlist_df = watchlist_df[columns_order]
 
-    # Add Export to CSV button
-    csv = watchlist_df.to_csv(index=False)
-    st.download_button(
-        label="📥 Export Watchlist to CSV",
-        data=csv,
-        file_name="stock_watchlist.csv",
-        mime="text/csv"
-    )
-
-    # Display table with only the 'theme' column editable
-    editable_columns = ['theme']
-
     # Display table with only the 'theme' column editable
     editable_columns = ['theme']
 
@@ -147,13 +135,27 @@ if not watchlist_df.empty:
         disabled=[col for col in watchlist_df.columns if col not in editable_columns]
     )
 
+    # Create two columns for the buttons
+    col1, col2, col3, col4, col5 = st.columns(5)
+    
     # Update themes in the database
-    if st.button("Save Changes"):
-        for ticker in edited_df.index:
-            new_theme = edited_df.at[ticker, 'theme']
-            update_theme(ticker, new_theme)
-        st.success("Themes updated successfully.")
-        st.rerun()
+    with col1:
+        if st.button("Save Changes"):
+            for ticker in edited_df.index:
+                new_theme = edited_df.at[ticker, 'theme']
+                update_theme(ticker, new_theme)
+            st.success("Themes updated successfully.")
+            st.rerun()
+    
+    # Add Export to CSV button in the second column
+    with col2:
+        csv = watchlist_df.to_csv(index=False)
+        st.download_button(
+            label="📥 Export Watchlist to CSV",
+            data=csv,
+            file_name="stock_watchlist.csv",
+            mime="text/csv"
+        )
 
 # Section: Grouped Stocks
 st.header("Grouped Stocks")
