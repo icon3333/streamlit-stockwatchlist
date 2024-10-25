@@ -29,24 +29,24 @@ The goal is to learn and have fun while building something useful! While the cod
 ## CSV Import Format
 
 When using the bulk import feature, your CSV file must meet the following requirements:
-
 - Must contain a column named exactly 'ticker_symbol'
 - The ticker_symbol column should contain valid stock ticker symbols (e.g., AAPL, GOOGL, MSFT)
 - Additional columns will be ignored
 - Each ticker symbol should be on a new row
 
-   Example CSV format:
+Example CSV format:
+```csv
+ticker_symbol
+AAPL
+GOOGL
+MSFT
+```
 
-   ```csv
-   ticker_symbol
-   AAPL
-   GOOGL
-   MSFT
-   ```
-
-## 🚀 Quick Install (Recommended)
+## 🚀 Quick Install and Update (Recommended)
 
 ### Using the `install.sh` Script
+
+The install script now supports both fresh installations and updates to existing installations.
 
 **Prerequisites:**
 
@@ -56,7 +56,7 @@ When using the bulk import feature, your CSV file must meet the following requir
 
 1. **Download the `install.sh` Script**
 
-   You can download the script directly using `wget` or `curl`:
+   For fresh installation or to update your existing script:
 
    ```bash
    wget https://raw.githubusercontent.com/icon3333/streamlit-stockwatchlist/main/install.sh
@@ -74,113 +74,59 @@ When using the bulk import feature, your CSV file must meet the following requir
    chmod +x install.sh
    ```
 
-3. **Run the Installation Script**
+3. **Run the Installation/Update Script**
 
    ```bash
    ./install.sh
    ```
 
-The script will perform the following actions:
-
-- Check for Docker Installation: Ensures Docker is installed. If not, it prompts you to install Docker and exits.
-- Clone the Repository: Clones the streamlit-stockwatchlist repository into a directory named streamlit-stockwatchlist.
-- Build the Docker Image: Builds a Docker image named streamlit-stockwatchlist using the optimized Dockerfile.
-- Create Data Directory: Creates a persistent data directory at $HOME/.stockwatchlist/data.
-- Run the Docker Container: Runs the Docker container in detached mode, mapping port 8501 and mounting the data directory for persistent storage.
+The script will automatically:
+- Check for an existing installation
+- Stop and remove any existing container
+- Update the code if it's an existing installation
+- Perform a fresh install if it's a new installation
+- Preserve your watchlist data
+- Build the Docker image
+- Start a new container with the latest code
 
 4. **Access the Application**
 
    Once the script completes, open your web browser and navigate to:
-
    ```
    http://localhost:8501
    ```
 
-   You'll see the Stock Watchlist Tool up and running!
-
-## 🔧 Manual Installation Options
-
-### Option 1: Using Docker
-
-If you prefer to perform the installation manually without the install.sh script, follow these steps:
-
-1. **Clone the Repository**
-
-   ```bash
-   git clone https://github.com/icon3333/streamlit-stockwatchlist.git
-   cd streamlit-stockwatchlist
-   ```
-
-2. **Build the Docker Image**
-
-   ```bash
-   docker build -t streamlit-stockwatchlist .
-   ```
-
-3. **Create Data Directory**
-
-   ```bash
-   mkdir -p $HOME/.stockwatchlist/data
-   ```
-
-4. **Run the Docker Container**
-
-   ```bash
-   docker run -d \
-       --name streamlit-stockwatchlist \
-       -p 8501:8501 \
-       -v $HOME/.stockwatchlist/data:/app/data \
-       streamlit-stockwatchlist
-   ```
-
-5. **Access the Application**
-
-   Open your browser and go to http://localhost:8501.
-
-### Option 2: Direct Python Installation
-
-For those who prefer not to use Docker, you can run the application directly using Python:
-
-1. **Clone the Repository**
-
-   ```bash
-   git clone https://github.com/icon3333/streamlit-stockwatchlist.git
-   cd streamlit-stockwatchlist
-   ```
-
-2. **Install Dependencies**
-
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. **Run the Application**
-
-   ```bash
-   streamlit run app.py
-   ```
-
-4. **Access the Application**
-
-   Open your browser and navigate to http://localhost:8501.
-
-## 💾 Data Storage
-
-- **Docker Installation:** Data is stored in `./data` within the project directory
-- **Python Installation:** Data is stored in `./data` within the project directory
-
 ## 🔄 Updates
 
-### Docker Version
+### Easiest Method (Recommended)
+Simply rerun the install script:
+```bash
+./install.sh
+```
+
+### Manual Docker Update
+
+If you prefer to update manually:
 
 ```bash
-cd streamlit-stockwatchlist
-git pull
+# Stop and remove the current container
+docker stop streamlit-stockwatchlist
+docker rm streamlit-stockwatchlist
+
+# Rebuild the image with new code
 docker build -t streamlit-stockwatchlist .
-docker restart streamlit-stockwatchlist
+
+# Run the new container
+docker run -d \
+    --name streamlit-stockwatchlist \
+    -p 8501:8501 \
+    -v "$PWD/data":/app/data \
+    streamlit-stockwatchlist
 ```
 
 ### Python Version
+
+For direct Python installations:
 
 ```bash
 cd streamlit-stockwatchlist
@@ -201,6 +147,18 @@ pip install -r requirements.txt
   sudo ./install.sh
   ```
 - **Data Not Updating?** Restart the Docker container or Python process.
+- **Update Failed?** Try removing the installation directory and running a fresh install:
+  ```bash
+  rm -rf streamlit-stockwatchlist
+  ./install.sh
+  ```
+
+## 💾 Data Storage
+
+Your watchlist data is stored in:
+- `./data` directory within the project folder
+- This data persists across updates and container restarts
+- Back up this directory if you want to preserve your watchlist
 
 ## Requirements
 
@@ -211,7 +169,6 @@ pip install -r requirements.txt
 ## ⚠️ Disclaimer
 
 This is a hobby project created for learning and experimentation. The code and tools provided:
-
 - Are not production-ready
 - May contain bugs or security issues
 - Should be used at your own risk
