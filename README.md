@@ -7,6 +7,7 @@ A Streamlit-based application to maintain and analyze your stock watchlist with 
 ## 👋 About This Project
 
 I'm a hobby programmer who enjoys experimenting with different tools and technologies. This project was created using:
+
 - LLMs (like ChatGPT/Claude) for code assistance
 - Streamlit for the web interface
 - Python for data processing
@@ -29,11 +30,13 @@ The goal is to learn and have fun while building something useful! While the cod
 ```bash
 wget -O - https://raw.githubusercontent.com/icon3333/streamlit-stockwatchlist/prod/install.sh | bash
 ```
+
 Then open http://localhost:8501 in your browser.
 
 ## 🔧 Manual Installation Options
 
 ### Option 1: Using Docker (Recommended)
+
 ```bash
 # Clone the repository
 git clone https://github.com/icon3333/streamlit-stockwatchlist.git
@@ -49,6 +52,7 @@ docker run -d \
 ```
 
 ### Option 2: Direct Python Installation
+
 ```bash
 # Clone the repository
 git clone https://github.com/icon3333/streamlit-stockwatchlist.git
@@ -69,6 +73,7 @@ streamlit run app.py
 ## 🔄 Updates
 
 ### Docker Version
+
 ```bash
 cd streamlit-stockwatchlist
 git pull
@@ -77,6 +82,7 @@ docker restart stock-watchlist
 ```
 
 ### Python Version
+
 ```bash
 cd streamlit-stockwatchlist
 git pull
@@ -98,6 +104,7 @@ pip install -r requirements.txt
 ## ⚠️ Disclaimer
 
 This is a hobby project created for learning and experimentation. The code and tools provided:
+
 - Are not production-ready
 - May contain bugs or security issues
 - Should be used at your own risk
