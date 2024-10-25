@@ -23,22 +23,26 @@ The goal is to learn and have fun while building something useful! While the cod
 - **Group Stocks:** Group stocks by any column, including numerical columns divided into quintiles
 - **Automatic Data Refresh:** Data is refreshed every 24 hours to ensure up-to-date information
 - **Bulk Import:** Add multiple stocks via CSV upload (CSV must contain a column named 'ticker_symbol')
+- **Export Watchlist:** Download your entire watchlist as a CSV file with all stock metrics and custom themes
 - **Persistent Storage:** All your watchlist data is stored locally
-- **CSV Import Format:** When using the bulk import feature, your CSV file must meet the following requirements:
 
-  - Must contain a column named exactly 'ticker_symbol'
-  - The ticker_symbol column should contain valid stock ticker symbols (e.g., AAPL, GOOGL, MSFT)
-  - Additional columns will be ignored
-  - Each ticker symbol should be on a new row
+## CSV Import Format
 
-    Example CSV format:
+When using the bulk import feature, your CSV file must meet the following requirements:
 
-    ```csv
-    ticker_symbol
-    AAPL
-    GOOGL
-    MSFT
-    ```
+- Must contain a column named exactly 'ticker_symbol'
+- The ticker_symbol column should contain valid stock ticker symbols (e.g., AAPL, GOOGL, MSFT)
+- Additional columns will be ignored
+- Each ticker symbol should be on a new row
+
+   Example CSV format:
+
+   ```csv
+   ticker_symbol
+   AAPL
+   GOOGL
+   MSFT
+   ```
 
 ## 🚀 Quick Install (Recommended)
 

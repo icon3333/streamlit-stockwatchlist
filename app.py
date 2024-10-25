@@ -123,6 +123,18 @@ if not watchlist_df.empty:
     )
     watchlist_df = watchlist_df[columns_order]
 
+    # Add Export to CSV button
+    csv = watchlist_df.to_csv(index=False)
+    st.download_button(
+        label="📥 Export Watchlist to CSV",
+        data=csv,
+        file_name="stock_watchlist.csv",
+        mime="text/csv"
+    )
+
+    # Display table with only the 'theme' column editable
+    editable_columns = ['theme']
+
     # Display table with only the 'theme' column editable
     editable_columns = ['theme']
 
