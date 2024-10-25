@@ -1,4 +1,4 @@
-FROM python:3.9-slim
+FROM python:3.9-alpine
 
 # Install git and clean up cache in the same layer to keep image size down
 RUN apt-get update && \

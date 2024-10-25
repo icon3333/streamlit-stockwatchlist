@@ -27,48 +27,126 @@ The goal is to learn and have fun while building something useful! While the cod
 
 ## 🚀 Quick Install (Recommended)
 
-```bash
-wget -O - https://raw.githubusercontent.com/icon3333/streamlit-stockwatchlist/prod/install.sh | bash
-```
+### Using the `install.sh` Script
 
-Then open http://localhost:8501 in your browser.
+**Prerequisites:**
+
+- **Docker** installed on your system. You can download it from the [official Docker website](https://www.docker.com/get-started).
+
+**Steps:**
+
+1. **Download the `install.sh` Script**
+
+   You can download the script directly using `wget` or `curl`:
+
+   ```bash
+   wget https://raw.githubusercontent.com/icon3333/streamlit-stockwatchlist/main/install.sh
+   ```
+
+   Or with curl:
+
+   ```bash
+   curl -O https://raw.githubusercontent.com/icon3333/streamlit-stockwatchlist/main/install.sh
+   ```
+
+2. **Make the Script Executable**
+
+   ```bash
+   chmod +x install.sh
+   ```
+
+3. **Run the Installation Script**
+
+   ```bash
+   ./install.sh
+   ```
+
+The script will perform the following actions:
+- Check for Docker Installation: Ensures Docker is installed. If not, it prompts you to install Docker and exits.
+- Clone the Repository: Clones the streamlit-stockwatchlist repository into a directory named streamlit-stockwatchlist.
+- Build the Docker Image: Builds a Docker image named streamlit-stockwatchlist using the optimized Dockerfile.
+- Create Data Directory: Creates a persistent data directory at $HOME/.stockwatchlist/data.
+- Run the Docker Container: Runs the Docker container in detached mode, mapping port 8501 and mounting the data directory for persistent storage.
+
+4. **Access the Application**
+
+   Once the script completes, open your web browser and navigate to:
+   ```
+   http://localhost:8501
+   ```
+
+   You'll see the Stock Watchlist Tool up and running!
 
 ## 🔧 Manual Installation Options
 
-### Option 1: Using Docker (Recommended)
+### Option 1: Using Docker
 
-```bash
-# Clone the repository
-git clone https://github.com/icon3333/streamlit-stockwatchlist.git
-cd streamlit-stockwatchlist
+If you prefer to perform the installation manually without the install.sh script, follow these steps:
 
-# Build and run with Docker
-docker build -t stock-watchlist .
-docker run -d \
-    --name stock-watchlist \
-    -p 8501:8501 \
-    -v $HOME/.stock-watchlist/data:/app/data \
-    stock-watchlist
-```
+1. **Clone the Repository**
+
+   ```bash
+   git clone https://github.com/icon3333/streamlit-stockwatchlist.git
+   cd streamlit-stockwatchlist
+   ```
+
+2. **Build the Docker Image**
+
+   ```bash
+   docker build -t streamlit-stockwatchlist .
+   ```
+
+3. **Create Data Directory**
+
+   ```bash
+   mkdir -p $HOME/.stockwatchlist/data
+   ```
+
+4. **Run the Docker Container**
+
+   ```bash
+   docker run -d \
+       --name streamlit-stockwatchlist \
+       -p 8501:8501 \
+       -v $HOME/.stockwatchlist/data:/app/data \
+       streamlit-stockwatchlist
+   ```
+
+5. **Access the Application**
+
+   Open your browser and go to http://localhost:8501.
 
 ### Option 2: Direct Python Installation
 
-```bash
-# Clone the repository
-git clone https://github.com/icon3333/streamlit-stockwatchlist.git
-cd streamlit-stockwatchlist
+For those who prefer not to use Docker, you can run the application directly using Python:
 
-# Install dependencies
-python3 -m pip install streamlit pandas yfinance
+1. **Clone the Repository**
 
-# Run the application
-streamlit run app.py
-```
+   ```bash
+   git clone https://github.com/icon3333/streamlit-stockwatchlist.git
+   cd streamlit-stockwatchlist
+   ```
+
+2. **Install Dependencies**
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Run the Application**
+
+   ```bash
+   streamlit run app.py
+   ```
+
+4. **Access the Application**
+
+   Open your browser and navigate to http://localhost:8501.
 
 ## 💾 Data Storage
 
-- Docker: Data stored in `$HOME/.stock-watchlist/data`
-- Python: Data stored in `./data`
+- **Docker Installation:** Data is stored in `./data` within the project directory
+- **Python Installation:** Data is stored in `./data` within the project directory
 
 ## 🔄 Updates
 
@@ -77,8 +155,8 @@ streamlit run app.py
 ```bash
 cd streamlit-stockwatchlist
 git pull
-docker build -t stock-watchlist .
-docker restart stock-watchlist
+docker build -t streamlit-stockwatchlist .
+docker restart streamlit-stockwatchlist
 ```
 
 ### Python Version
@@ -91,20 +169,27 @@ pip install -r requirements.txt
 
 ## 🛟 Troubleshooting
 
-- **Port 8501 in use?** Change the port: `-p YOUR_PORT:8501`
-- **Database issues?** Check write permissions in the data directory
-- **Data not updating?** Restart the container or Python process
+- **Port 8501 in use?** Change the port in the install.sh script or when running the Docker container:
+  ```bash
+  # For Docker run command
+  -p YOUR_PORT:8501
+  ```
+- **Docker Not Installed?** Install Docker from the official website.
+- **Permission Issues?** Run the install.sh script with sudo or adjust your user's permissions:
+  ```bash
+  sudo ./install.sh
+  ```
+- **Data Not Updating?** Restart the Docker container or Python process.
 
 ## Requirements
 
-- Python 3.x
+- Docker (Recommended for the install.sh script)
+- Python 3.x (If using direct Python installation)
 - See `requirements.txt` for Python dependencies
-- Docker (optional, but recommended)
 
 ## ⚠️ Disclaimer
 
 This is a hobby project created for learning and experimentation. The code and tools provided:
-
 - Are not production-ready
 - May contain bugs or security issues
 - Should be used at your own risk
