@@ -27,7 +27,7 @@ The goal is to learn and have fun while building something useful! While the cod
 ## 🚀 Quick Install (Recommended)
 
 ```bash
-wget -O - https://raw.githubusercontent.com/icon3333/streamlit-stockwatchlist/main/install.sh | bash
+wget -O - https://raw.githubusercontent.com/icon3333/streamlit-stockwatchlist/prod/install.sh | bash
 ```
 Then open http://localhost:8501 in your browser.
 
