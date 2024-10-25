@@ -1,10 +1,9 @@
 FROM python:3.9-alpine
 
 # Install git and clean up cache in the same layer to keep image size down
-RUN apt-get update && \
-    apt-get install -y git && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+RUN apk update && \
+    apk add --no-cache git && \
+    rm -rf /var/cache/apk/*
 
 # Set the working directory
 WORKDIR /app
