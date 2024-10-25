@@ -25,6 +25,7 @@ wheels/
 venv/
 ENV/
 .env
+.gitignore
 
 # Database
 *.db
@@ -61,3 +62,4 @@ Thumbs.db
 # Backup files
 *.bak
 backend/db/backups/
+LLM/
