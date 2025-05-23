@@ -100,7 +100,7 @@ with st.expander("# Manage Your Watchlist", expanded=True):
             except Exception as e:
                 st.error(f"Error reading CSV: {e}")
 
-    # Column 3: Remove Ticker
+    # Column 2: Remove Ticker
     with col2:
         watchlist_df = get_all_stocks()
         if not watchlist_df.empty:
