@@ -186,4 +186,3 @@ MIT License - See LICENSE file for details
 - Stock data provided by Yahoo Finance API
 
 
-wget https://raw.githubusercontent.com/icon3333/streamlit-stockwatchlist/main/install.sh || chmod +x install.sh || ./install.sh
