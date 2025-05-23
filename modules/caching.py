@@ -12,7 +12,10 @@ REFRESH_INTERVAL_HOURS = 24
 def check_and_refresh_data():
     last_refresh_str = get_metadata('last_refresh')
     if last_refresh_str:
-        last_refresh = datetime.datetime.fromisoformat(last_refresh_str)
+        try:
+            last_refresh = datetime.datetime.fromisoformat(last_refresh_str)
+        except ValueError:
+            last_refresh = None
     else:
         last_refresh = None
 
